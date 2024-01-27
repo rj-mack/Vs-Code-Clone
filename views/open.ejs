@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../stylesheets/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+  <div id="main">
+    <div id="popup">
+      <div id="popupcard">
+        <h3>change name</h3>
+        <hr>
+        <form action="" method="post">
+          <input type="text" name="newfilename" placeholder="newfilename">
+          <input id="submit" type="submit" value="edit name">
+        </form>
+      </div>
+    </div>
+    <div id="left">
+      <div id="filedets">
+        <h3>folder name</h3>
+        <div id="icons">
+          <i id="fileicon" class="ri-folder-3-line"></i>
+          <i id="foldericon" class="ri-folder-3-fill"></i>
+          <a href="/back"><i class="ri-restart-line"></i></a>
+        </div>
+      </div>
+      <div id="files">
+        <form id="fileform" action="/createfile">
+          <input type="text" name="filename" placeholder="filename">
+        </form>
+        <form id="folderform" action="/createfolder">
+          <input type="text" name="foldername" placeholder="foldername">
+        </form>
+        <% files.forEach(function(el){ %>
+          <div id="elem">
+            <div id="elem1">
+              <% if(el.isDirectory()){ %>
+                <i class="ri-folder-fill"></i>
+                <p><%= el.name %></p>
+              <% }else{ %>
+                <i class="ri-folder-line"></i>
+                <p><%= el.name %></p>
+             <% } %>
+            </div>
+            <div id="elem2">
+              <i class="ri-pencil-fill"></i>
+              <% if(el.isDirectory()){ %>
+                <a href="/delete-folder/<%= el.name %>"><i class="ri-delete-bin-line"></i></a>
+              <% }else{ %>
+                <a href="/delete-file/<%= el.name %>"><i class="ri-delete-bin-line"></i></a>
+              <% } %>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+    <div id="right">
+      <div id="nav">
+        <p id="close">Setting <i class="ri-close-line"></i></p>
+        <div id="f1"><h5><%= filename %></h5><a href="/"><i class="ri-close-fill"></i></a></div>
+      </div>
+      <form action="/savedata/<%= filename %>" method="post">
+        <textarea name="dataa" style="resize: none;">
+          <%= filldata %>
+        </textarea>
+        <input id="sf" type="submit" value="save file">
+      </form>
+    </div>
+  </div>
+  <script src="../javascripts/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../stylesheets/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+  
+  <div id="main">
+    <div id="popup">
+      <div id="popupcard">
+        <h3>change name</h3>
+        <hr>
+        <form action="" method="post">
+          <input id="newfn" type="text" name="newfilename" placeholder="newfilename">
+          <input id="submit" type="submit" value="edit name">
+        </form>
+      </div>
+    </div>
+    <div id="left">
+      <div class="icons">
+        <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/visual-studio-code-icon.png" alt="">
+        <div class="filename">
+          <h2>File</h2>
+          <h3>Edit</h3>
+          <h3>Section</h3>
+          <h3>view</h3>
+          <h3>Go</h3>
+          <h3>...</h3>
+
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="sidenav">
+          <i class="ri-file-copy-line ic"></i>
+          <i class="ri-search-line ic"></i>
+          <i class="ri-git-branch-line ic"></i>
+          <i class="ri-bug-line ic"></i>
+          <i class="ri-layout-grid-line ic"></i>
+          <i class="ri-account-circle-fill  btt"></i>
+          <i class="ri-settings-2-line   bt"></i>
+        </div>
+       <div class="side-right">
+        <div id="filedets">
+          <h3>folder name</h3>
+          <div id="icons">
+            <i id="fileicon" class="ri-file-3-line"></i>
+            <i id="foldericon" class="ri-folder-3-fill"></i>
+            <a href="/back"><i class="ri-restart-line" id="restart"></i></a>
+          </div>
+        </div>
+        <div id="files">
+          <form id="fileform" action="/createfile">
+            <input type="text" name="filename" placeholder="filename">
+          </form>
+          <form id="folderform" action="/createfolder">
+            <input type="text" name="foldername" placeholder="foldername">
+          </form>
+          <% files.forEach(function(el){ %>
+            <div id="elem">
+              <div id="elem1">
+                <% if(el.isDirectory()){ %>
+                  <i class="ri-folder-fill"></i>
+                  <p><%= el.name %></p>
+                <% }else{ %>
+                  <a href="/show/<%= el.name %>"><i class="ri-file-line"></i>
+                    <p><%= el.name %></p></a>
+                <% } %>
+              </div>
+              <div id="elem2">
+                <i id="pencil" class="ri-pencil-fill"></i>
+                <% if(el.isDirectory()){ %>
+                  <a href="/delete-folder/<%= el.name %>"><i class="ri-delete-bin-line"></i></a>
+                <% }else{ %>
+                  <a href="/delete-file/<%= el.name %>"><i class="ri-delete-bin-line"></i></a>
+                <% } %>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+       </div>
+    </div>
+    <div id="right">
+      <div class="navbar">
+        <div class="logo">
+          <i class="ri-arrow-left-line deg"></i>
+          <i class="ri-arrow-right-line deg"></i>
+        </div>
+        <div class="nav-links">
+          <i class="ri-search-line deg">Vs Code</i>
+        </div>
+        <div class="fileicons">
+          <i class="ri-side-bar-fill deg"></i>
+          <i class="ri-layout-bottom-line deg"></i>
+          <i class="ri-side-bar-line deg"></i>
+          <i class="ri-layout-4-line deg"></i>
+        </div>
+      </div>
+      <div id="navone">
+        <p id="close">Setting <i class="ri-close-line"></i></p>
+      </div>
+      <img id="logo" src="../images/Screenshot (194).png" alt="">
+    </div>
+  </div>
+  <script src="../javascripts/script.js"></script>
+</body>
+</html>
